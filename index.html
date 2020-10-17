@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="app.js" charset="utf-8"></script>
+  <title>Minesweeper</title>
+  <link rel="shortcut icon" href="https://aland-mariwan.de/images/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+  <svg id="main" class="hide">
+    <symbol id="bomb-svg" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 786.7 687.8" width="50px">
+      <path d="M427.4,144.2l40.7-41.8a23.1,23.1,0,0,1,32.5,0l72.8,72.8a23.1,23.1,0,0,1,0,32.5l-37.4,37.4" transform="translate(0 -11.6)" fill="none" stroke="#39395b" stroke-linecap="round" stroke-miterlimit="10" stroke-width="17"/>
+      <circle cx="291.1" cy="385.2" r="282.6" fill="none" stroke="#39395b" stroke-linecap="round" stroke-miterlimit="10" stroke-width="17"/>
+      <path d="M540.2,141.2l15.4-20.5c12.6-16.8,30.4-17.7,43.6-2.4l0.3,0.3c11.8,13.7,31.3,22.6,48.3,11.4,6.1-4,20.7-20.5,20.7-20.5" transform="translate(0 -11.6)" fill="none" stroke="#39395b" stroke-linecap="round" stroke-miterlimit="10" stroke-width="17"/>
+      <line x1="701.7" y1="63.3" x2="742" y2="23.1" fill="none" stroke="#39395b" stroke-linecap="round" stroke-miterlimit="10" stroke-width="17"/>
+      <line x1="713.2" y1="107.4" x2="766.2" y2="128.2" fill="none" stroke="#39395b" stroke-linecap="round" stroke-miterlimit="10" stroke-width="17"/>
+      <line x1="654.5" y1="60.2" x2="630.8" y2="8.5" fill="none" stroke="#39395b" stroke-linecap="round" stroke-miterlimit="10" stroke-width="17"/>
+      <path d="M82,396.8c0-118.4,95.9-214.3,214.3-214.3" transform="translate(0 -11.6)" fill="none" stroke="#39395b" stroke-linecap="round" stroke-miterlimit="10" stroke-width="17"/>
+      <g id="Happy_face" data-name="Happy face">
+        <path d="M170.4,432.1a34.6,34.6,0,0,1,69.2,0" transform="translate(0 -11.6)" fill="none" stroke="#39395b" stroke-linecap="round" stroke-miterlimit="10" stroke-width="17"/>
+        <path d="M342.5,432.1a34.6,34.6,0,0,1,69.2,0" transform="translate(0 -11.6)" fill="none" stroke="#39395b" stroke-linecap="round" stroke-miterlimit="10" stroke-width="17"/>
+        <path d="M367,481.7c0,33.7-33.4,64.1-74.6,64.1s-74.6-30.3-74.6-64.1" transform="translate(0 -11.6)" fill="none" stroke="#39395b" stroke-linecap="round" stroke-miterlimit="10" stroke-width="17"/>
+      </g>
+    </symbol>
+  </svg>
+  <div id="background"></div>
+  <div id="modal">
+      <div id="result-box">
+        <div id="result-top">
+          <svg id="bomb" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 774.7 676.2">
+            <path d="M427.4,144.2l40.7-41.8a23.1,23.1,0,0,1,32.5,0l72.8,72.8a23.1,23.1,0,0,1,0,32.5l-37.4,37.4" transform="translate(0 -11.6)" fill="#8b6af5" stroke="#39395b" stroke-linecap="round" stroke-miterlimit="10" stroke-width="17" class="bomb-stroke bomb-fill"/>
+            <circle cx="291.1" cy="385.2" r="282.6" fill="#8b6af5" stroke="#39395b" stroke-linecap="round" stroke-miterlimit="10" stroke-width="17" class="bomb-stroke bomb-fill"/>
+            <path d="M540.2,141.2l15.4-20.5c12.6-16.8,30.4-17.7,43.6-2.4l0.3,0.3c11.8,13.7,31.3,22.6,48.3,11.4,6.1-4,20.7-20.5,20.7-20.5" transform="translate(0 -11.6)" fill="none" stroke="#39395b" stroke-linecap="round" stroke-miterlimit="10" stroke-width="17" class="bomb-stroke"/>
+            <line x1="701.7" y1="63.3" x2="742" y2="23.1" fill="none" stroke="#39395b" stroke-linecap="round" stroke-miterlimit="10" stroke-width="17" class="bomb-stroke"/>
+            <line x1="713.2" y1="107.4" x2="766.2" y2="128.2" fill="none" stroke="#39395b" stroke-linecap="round" stroke-miterlimit="10" stroke-width="17" class="bomb-stroke"/>
+            <line x1="654.5" y1="60.2" x2="630.8" y2="8.5" fill="none" stroke="#39395b" stroke-linecap="round" stroke-miterlimit="10" stroke-width="17" class="bomb-stroke"/>
+            <path d="M82,396.8c0-118.4,95.9-214.3,214.3-214.3" transform="translate(0 -11.6)" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-opacity="0.45" stroke-width="17"/>
+            <g id="happy-face" class="happy-face">
+              <path d="M170.4,432.1a34.6,34.6,0,0,1,69.2,0" transform="translate(0 -11.6)" fill="none" stroke="#39395b" stroke-linecap="round" stroke-miterlimit="10" stroke-width="17" class="bomb-stroke"/>
+              <path d="M342.5,432.1a34.6,34.6,0,0,1,69.2,0" transform="translate(0 -11.6)" fill="none" stroke="#39395b" stroke-linecap="round" stroke-miterlimit="10" stroke-width="17" class="bomb-stroke"/>
+              <path d="M367,481.7c0,33.7-33.4,64.1-74.6,64.1s-74.6-30.3-74.6-64.1" transform="translate(0 -11.6)" fill="none" stroke="#39395b" stroke-linecap="round" stroke-miterlimit="10" stroke-width="17" class="bomb-stroke"/>
+            </g>
+            <g id="sad-face" class="sad-face">
+              <g>
+                <circle cx="377.1" cy="406" r="17.7" fill="#39395b" class="bomb-fill-dark"/>
+                <path d="M250,517.1c0-19.2,17.6-42.5,41.1-42.5s43.8,23.3,43.8,42.5" transform="translate(0 -11.6)" fill="none" stroke="#39395b" stroke-linecap="round" stroke-miterlimit="10" stroke-width="17" class="bomb-stroke"/>
+                <circle cx="205" cy="406" r="17.7" fill="#39395b" class="bomb-fill-dark"/>
+              </g>
+            </g>
+          </svg>
+          <h1 id="result-message"></h1>
+          <h2 class="result-time">Your time: <span class="time-display"></span> seconds</h2>
+        </div>
+        <div id="new-game">
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 512 512" enable-background="new 0 0 512 512" fill="#fff" width="30">
+            <g>
+              <path d="M480.6,235.6c-11.3,0-20.4,9.1-20.4,20.4c0,112.6-91.6,204.2-204.2,204.2c-112.6,0-204.2-91.6-204.2-204.2   S143.4,51.8,256,51.8c61.5,0,118.5,27.1,157.1,73.7h-70.5c-11.3,0-20.4,9.1-20.4,20.4s9.1,20.4,20.4,20.4h114.6   c11.3,0,20.4-9.1,20.4-20.4V31.4c0-11.3-9.1-20.4-20.4-20.4s-20.4,9.1-20.4,20.4v59C390.7,40.1,325.8,11,256,11   C120.9,11,11,120.9,11,256c0,135.1,109.9,245,245,245s245-109.9,245-245C501,244.7,491.9,235.6,480.6,235.6z"/>
+            </g>
+          </svg>
+          <h2>New Game</h2>
+        </div>
+      </div>
+  </div>
+  <div class="container">
+    <div class="header">
+      <div class='dropdown'>
+        <div class='title'>Easy</div>
+        <div class='menu'>
+          <div class='option' id='option1'>Easy</div>
+          <div class='option' id='option2'>Medium</div>
+          <div class='option' id='option3'>Hard</div>
+        </div>
+      </div>
+      <div id='flag-countdown'><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 287.987 287.987" fill="#fff" width="30" style="enable-background:new 0 0 287.987 287.987;" xml:space="preserve"><g><path d="M228.702,141.029c-3.114-3.754-3.114-9.193,0-12.946l33.58-40.474c2.509-3.024,3.044-7.226,1.374-10.783   c-1.671-3.557-5.246-5.828-9.176-5.828h-57.647v60.98c0,16.618-13.52,30.138-30.138,30.138h-47.093v25.86   c0,5.599,4.539,10.138,10.138,10.138h124.74c3.93,0,7.505-2.271,9.176-5.828c1.671-3.557,1.135-7.759-1.374-10.783L228.702,141.029   z"/><path d="M176.832,131.978V25.138c0-5.599-4.539-10.138-10.138-10.138H53.37c0-8.284-6.716-15-15-15s-15,6.716-15,15   c0,7.827,0,253.91,0,257.987c0,8.284,6.716,15,15,15s15-6.716,15-15c0-6.943,0-126.106,0-130.871h113.324   C172.293,142.116,176.832,137.577,176.832,131.978z"/></g></svg><span id='flags-left'></span></div>
+      <div id="timer"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 559.98 559.98"  fill="#fff" width="30px" style="enable-background:new 0 0 559.98 559.98;" xml:space="preserve"><g><path d="M279.99,0C125.601,0,0,125.601,0,279.99c0,154.39,125.601,279.99,279.99,279.99c154.39,0,279.99-125.601,279.99-279.99    C559.98,125.601,434.38,0,279.99,0z M279.99,498.78c-120.644,0-218.79-98.146-218.79-218.79    c0-120.638,98.146-218.79,218.79-218.79s218.79,98.152,218.79,218.79C498.78,400.634,400.634,498.78,279.99,498.78z"/><path d="M304.226,280.326V162.976c0-13.103-10.618-23.721-23.716-23.721c-13.102,0-23.721,10.618-23.721,23.721v124.928    c0,0.373,0.092,0.723,0.11,1.096c-0.312,6.45,1.91,12.999,6.836,17.926l88.343,88.336c9.266,9.266,24.284,9.266,33.543,0    c9.26-9.266,9.266-24.284,0-33.544L304.226,280.326z"/></g></svg><span class="counter">000</span></div>
+    </div>
+    <div class="grid"></div>
+  </div>
+</body>
+</html>
